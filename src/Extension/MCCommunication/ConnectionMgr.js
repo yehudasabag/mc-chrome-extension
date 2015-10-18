@@ -161,6 +161,7 @@
 
 				xhr.open(restType, RESTHandler._server + restAPI, async);//async
 				xhr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+
 				if (this._hp4mSecret) {
 					xhr.setRequestHeader("x-hp4msecret", this._hp4mSecret);
 				}
@@ -407,7 +408,7 @@
 						CommonDetails.last.serverAddr = "";
 					});
 					CommonDetails.last.errorMessage = response.message || "Server.ConnectionFailed" + serverUrl;
-					console.Error("----------> Error : " + CommonDetails.last.errorMessage);
+					console.log("----------> Error : " + CommonDetails.last.errorMessage);
 					innerCallback({error: true, message: CommonDetails.last.errorMessage});
 				}
 				else {
@@ -421,7 +422,7 @@
 					if (!ConnectionMgr.isConnected()) {
 						WebSocketHandler.connect(function () {//ws open callback
 								console.log("----------> executed CB of WebSocketHandler.connect" + serverUrl);
-								updateServerInformation();
+								//updateServerInformation();
 								innerCallback({});
 							},
 							ConnectionMgr.incomingWsMessageHandler,//ws message callback

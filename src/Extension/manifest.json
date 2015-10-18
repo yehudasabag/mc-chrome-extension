@@ -3,7 +3,7 @@
   "description": "Tool that enable to deal with MC from the chrome.",
   "version": "0.1",
   "manifest_version": 2,
-  "permissions": ["webview"],
+  "permissions": ["webview", "http://*/"],
   "app": {
     "background": {
       "scripts": [
