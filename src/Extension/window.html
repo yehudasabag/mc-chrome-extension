@@ -3,8 +3,22 @@
   <head>
     <title>MC Chrome Extension</title>
     <link href="window.css" rel="stylesheet">   
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link href="UI/Controls/jsoneditor/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">
+    <script src="UI/Controls/jsoneditor/dist/jsoneditor.min.js"></script>
+	<script src="UI/Controls/jsoneditor/editor.js"></script>
+	
   </head>
   <body>
+   <div id="jsoneditor"></div>
+	<button type="button" onclick="addStep()">Add Step</button>
+	
+    <script>
+        var container = document.getElementById("jsoneditor");
+		Editor(container);
+    </script>
+	
     <section class="webviews"
       <webview id="wv1" partition="p1" style="width: 450px; height: 300px; border: 2px solid red" src="http://www.google.com"></webview>
       <webview id="wv2" partition="p2" style="width: 450px; height: 300px; border: 2px solid red" src="http://www.stackoverflow.com"></webview>
