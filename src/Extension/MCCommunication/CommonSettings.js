@@ -4,9 +4,9 @@
 	"use strict";
 
 	var mobileSettingsItemNameMap = {
-		"serverUrl": null,
-		"userName": null,
-		"password": null,
+		"serverUrl": "http://16.54.196.10:8080",
+		"userName": "admin@default.com",
+		"password": "password",
 		"deviceId": null,
 		"appId": null,
 		"restartApp": true,

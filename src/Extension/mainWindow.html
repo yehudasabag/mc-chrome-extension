@@ -8,12 +8,14 @@
     <link href="UI/Controls/jsoneditor/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">
     <script src="UI/Controls/jsoneditor/dist/jsoneditor.min.js"></script>
     <script src="UI/Controls/jsoneditor/editor.js"></script>   
+	<script src="MCCommunication/CommandsMgr.js"></script>   
   </head>
   
   <body>
     <div id="jsoneditor" style="padding=500%;width: 500px;height: 1100px;"></div>
     <button type="button" id="addStepBtn" >Add Step</button>
     <button id="appSelectionBtn" ">Select Application</button>
+	<button type="button" id="startReplayBtn" >Start Replay</button>
     
     <webview id="vncWV" src="http://16.54.196.10:8080/dev/#/" 
             style= 

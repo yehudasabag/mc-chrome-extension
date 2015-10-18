@@ -7,6 +7,10 @@ chrome.app.runtime.onLaunched.addListener(function() {
   });
 });
 
+var callback = function(param){
+	console.log("callback: " + param);
+}
+
 window.perfromAppSelection = function(vncWV) {
   console.log("### perfromDeviceSelection ###");
   JobMgr.createTempJob(function (job) {
@@ -17,4 +21,9 @@ window.perfromAppSelection = function(vncWV) {
   });
   
   
+}
+
+window.startReplay = function() {
+  console.log("### performStartReplay ###");
+  window.CommandsMgr.performStartReplay(callback);
 }
