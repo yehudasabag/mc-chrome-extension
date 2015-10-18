@@ -2,8 +2,8 @@
 	"use strict";
 
 	window.onload = function () {
-		var deviceSelection = document.getElementById("deviceSelectionBtn");
-		deviceSelection.addEventListener('click', onDeviceSelection);
+		var appSelection = document.getElementById("appSelectionBtn");
+		appSelection.addEventListener('click', onAppSelection);
 		
 		var addStepBtn = document.getElementById("addStepBtn");
 		addStepBtn.addEventListener('click', onAddStep);
@@ -33,10 +33,10 @@
 		stepsTree.addStep();
 	}
 
-	function onDeviceSelection() {
+	function onAppSelection() {
 		console.log("#### on device selection");
 		getBG(function () {
-			bg.perfromDeviceSelection();	
+			bg.perfromAppSelection(document.getElementById("vncWV"));	
 		});
 	}
 	
