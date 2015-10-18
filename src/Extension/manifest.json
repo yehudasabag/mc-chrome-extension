@@ -13,6 +13,7 @@
         "MCCommunication/DeviceMgr.js",
         "MCCommunication/ConnectionMgr.js",
         "MCCommunication/CommandsMgr.js",
+        "MCCommunication/JobMgr.js",
         "background.js"
       ]
     }
