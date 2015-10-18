@@ -10,6 +10,20 @@
 		
 		var container = document.getElementById("jsoneditor");
 		stepsTree = new Editor(container);
+		
+		getBG();
+	}
+	
+	function getBG(callback) {
+		if (bg) {
+			callback(bg);
+		}
+		chrome.runtime.getBackgroundPage(function (backgroundPage) {
+			if (backgroundPage) {
+				bg = backgroundPage;
+				callback(bg);
+			}
+		});
 	}
 	
 	var stepsTree = null;
@@ -21,11 +35,7 @@
 
 	function onDeviceSelection() {
 		console.log("#### on device selection");
-		chrome.runtime.getBackgroundPage(function (backgroundPage) {
-			if (backgroundPage) {
-				bg = backgroundPage;
-				bg.perfromDeviceSelection();
-			}
-		});
+		bg.perfromDeviceSelection();
+		
 	}
 })();
