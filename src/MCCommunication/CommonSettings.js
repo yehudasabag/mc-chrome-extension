@@ -8,11 +8,16 @@
 		"userName": null,
 		"password": null,
 		"deviceId": null,
-		"appId": null
+		"appId": null,
+		"restartApp": true,
+		"installAppBeforeExecution": true,
+		"deleteAppAfterExecution": false,
+		"maxStepTimeOut": 20
 	};
 
 	window.CommonDetails = {
 		currJobId: null,
+		useHttps: false,
 		msgTimeouts: {
 			startRecord: 3 * 60 * 1000,
 			startReplay: 3 * 60 * 1000,
@@ -27,7 +32,7 @@
 			return mobileSettingsItemNameMap[name];
 		},
 
-		updateSetting: function (value) {
+		updateSetting: function (name, value) {
 			mobileSettingsItemNameMap[name] = value;
 		},
 
