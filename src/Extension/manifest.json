@@ -1,0 +1,29 @@
+{
+  "name": "MC-Chrome-Extension",
+  "description": "Tool that enable to deal with MC from the chrome.",
+  "version": "0.1",
+  "manifest_version": 2,
+  "permissions": ["webview"],
+  "webview": {
+    "partitions": [
+      {
+        "name": "localPackage",
+        "accessible_resources": [ "*.js", "*.html" ]
+      }
+    ]
+  },
+  "app": {
+    "background": {
+      "scripts": [
+        "Common/minevents.js",
+        "MCCommunication/CommonSettings.js",
+        "MCCommunication/AppMgr.js",
+        "MCCommunication/DeviceMgr.js",
+        "MCCommunication/ConnectionMgr.js",
+        "MCCommunication/CommandsMgr.js",
+        "background.js"
+      ]
+    }
+  },
+  "icons": { "16": "MClogo16.png", "128": "MClogo128.png" }
+}
