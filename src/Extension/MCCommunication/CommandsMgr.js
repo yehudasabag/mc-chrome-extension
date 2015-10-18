@@ -87,9 +87,11 @@
 		executeStep: function (actionSection, testObj, targetTestObject, command, callback) {
 			var contentExtension = {};
 			if (actionSection) {
+				console.log(actionSection);
 				contentExtension.action = actionSection;
 			}
 			if (testObj && testObj.className != "Device") {
+				console.log(testObj);
 				contentExtension.application = {uuid: AppMgr.currApp.identifier};
 			}
 			if (testObj) {
@@ -99,6 +101,7 @@
 				contentExtension.targetTestObject = targetTestObject;
 			}
 
+			console.log("content: " + contentExtension);
 			ConnectionMgr.sendToWS(command || "executeStep", "mobile/step-executed", false, contentExtension, false, callback);
 		},
 		findElementInPoint: function (point, callback) {

@@ -23,8 +23,6 @@ function Editor(domName){
 }
 
 var jsonCmdTemplate = {
-	"command": "executeStep",
-	"content": {
 	"action": {
 		"name": "",
 		"parameters": {
@@ -54,10 +52,7 @@ var jsonCmdTemplate = {
 		"isScrollable": false,
 		"nativeClass": "",
 		"resourceId": ""
-	},
-	"requestId": -1,
-	"stepId": ""
-	}	
+	}
 }	
 		
 		

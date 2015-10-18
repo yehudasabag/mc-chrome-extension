@@ -4,7 +4,7 @@
 	window.DeviceMgr = {
 		currDevice: {},
 		getDeviceId: function () {
-			return McCommonDetails.getSetting("deviceId");
+			return CommonDetails.getSetting("deviceId");
 		},
 		getDeviceName: function () {
 			return this.currDevice.logicName || "";

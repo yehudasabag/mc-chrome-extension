@@ -1,17 +1,17 @@
 console.log("###############################");
 function YEvent(target) {
 	var events = {}, empty = [], list, j, i;
-	target = target || this
+	this.target = target || this
 	/**
 	 *  On: listen to events
 	 */
-	target.on = function (type, func, ctx) {
+	this.target.on = function (type, func, ctx) {
 		(events[type] = events[type] || []).push([func, ctx])
 	}
 	/**
 	 *  Off: stop listening to event / specific callback
 	 */
-	target.off = function (type, func) {
+	this.target.off = function (type, func) {
 		type || (events = {})
 		list = events[type] || empty,
 		i = list.length = func ? list.length : 0
@@ -20,19 +20,29 @@ function YEvent(target) {
 	/** 
 	 * Emit: send event, callbacks will be triggered
 	 */
-	target.dispatch = function (type) {
+	this.target.dispatch = function (type, arguments) {
 		list = events[type] || empty; i = 0
-		while (j = list[i++]) j[0].apply(j[1], empty.slice.call(arguments, 1))
+		while (j = list[i++]) j[0].apply(j[1], [arguments]);
 	};
 }
 
+YEvent.Instance = null;
+
 YEvent.on = function (type, func, ctx) {
-	return new YEvent({}).on(type, func, ctx);
+	if(!YEvent.Instance)
+	{
+		YEvent.Instance = new YEvent({});
+	}
+	
+	YEvent.Instance.target.on(type, func, ctx);
+	
+	return YEvent.Instance.target;
 }
 
 YEvent.off = function (type, func, event) {
-	event.off(type, func);
+	YEvent.Instance.target.off(type, func);
 }
-YEvent.emit = function (type, event) {
-	event.dispatch(type);
+
+YEvent.dispatch = function (type, arguments) {
+	YEvent.Instance.target.dispatch(type, arguments);
 }
