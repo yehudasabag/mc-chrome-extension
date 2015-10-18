@@ -1,4 +1,4 @@
-
+console.log("###############################");
 function YEvent(target) {
 	var events = {}, empty = [], list, j, i;
 	target = target || this

@@ -4,9 +4,20 @@
   "version": "0.1",
   "manifest_version": 2,
   "permissions": ["webview"],
+  "webview": {
+    "partitions": [
+      {
+        "name": "localPackage",
+        "accessible_resources": [ "*.js", "*.html" ]
+      }
+    ]
+  },
   "app": {
     "background": {
-      "scripts": ["background.js"]
+      "scripts": [
+        "Common/minevents.js",
+        "background.js"
+      ]
     }
   },
   "icons": { "16": "MClogo16.png", "128": "MClogo128.png" }
