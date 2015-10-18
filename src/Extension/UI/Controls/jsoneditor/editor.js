@@ -1,20 +1,24 @@
 
 function Editor(domName){
 	this.domName = domName;
-	this.steps = [];
+	this.numOfSteps = 0;
+	this.steps = {};
+	
 	this.getSteps = function(){
 		return editor.get();
 	}
 	
 	this.addStep = function(json){
 		var step = (json) ? json : jsonCmdTemplate;
-		steps.push(step)
+		steps["Step " + numOfSteps] = step;
 		editor.set(steps);
+		numOfSteps += 1;
 	}
 	
 	var editor = new JSONEditor(domName, {
-		  "change": function () {
-	}});
+		  "change": function () {},
+		  "name": "Steps"
+		  });
 }
 
 var jsonCmdTemplate = {
