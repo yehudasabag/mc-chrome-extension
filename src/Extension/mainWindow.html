@@ -2,10 +2,17 @@
 <html>
   <head>
     <title>MC Chrome Extension</title>
+    
     <script src="mainWindow.js"></script>
-    <!--link href="window.css" rel="stylesheet"-->   
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link href="UI/Controls/jsoneditor/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">
+    <script src="UI/Controls/jsoneditor/dist/jsoneditor.min.js"></script>
+    <script src="UI/Controls/jsoneditor/editor.js"></script>   
   </head>
+  
   <body>
+    <div id="jsoneditor"></div>
+    <button type="button" id="addStepBtn" >Add Step</button>
     <button id="deviceSelectionBtn" ">Select Application</button>
     
       <webview id="sidebarWV" partition="persist:localPackage" src="Sidebar/sidebar.html" 
