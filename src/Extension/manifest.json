@@ -16,6 +16,11 @@
     "background": {
       "scripts": [
         "Common/minevents.js",
+        "MCCommunication/CommonSettings.js",
+        "MCCommunication/AppMgr.js",
+        "MCCommunication/DeviceMgr.js",
+        "MCCommunication/ConnectionMgr.js",
+        "MCCommunication/CommandsMgr.js",
         "background.js"
       ]
     }

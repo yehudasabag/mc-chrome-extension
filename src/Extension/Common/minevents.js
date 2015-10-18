@@ -26,14 +26,13 @@ function YEvent(target) {
 	};
 }
 
-Object.extend(YEvent, {
-	on: function (type, func, ctx) {
-		return new YEvent({}).on(type, func, ctx);
-	},
-	off: function (type, func, event) {
-		event.off(type, func);
-	},
-	emit: function (type, event) {
-		event.dispatch(type);
-	}
-}); 
+YEvent.on = function (type, func, ctx) {
+	return new YEvent({}).on(type, func, ctx);
+}
+
+YEvent.off = function (type, func, event) {
+	event.off(type, func);
+}
+YEvent.emit = function (type, event) {
+	event.dispatch(type);
+}
