@@ -503,13 +503,12 @@
 				return;
 			}
 
-			var retObj = CommonDetails.validateServerUrl(server);
+			/*var retObj = CommonDetails.validateServerUrl(server);
 			if (retObj.error) {
-				console.error("----------> login() - ip or port are invalid");
+				console.log("----------> login() - ip or port are invalid");
 				callback && callback(retObj);
 				return;
-			}
-
+			}*/
 			if (!force) {
 				if (!CommonDetails.loggedIn) {
 					innerLogIn();

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MC Chrome Extension</title>
+    
+    <script src="mainWindow.js"></script>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link href="UI/Controls/jsoneditor/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">
+    <script src="UI/Controls/jsoneditor/dist/jsoneditor.min.js"></script>
+    <script src="UI/Controls/jsoneditor/editor.js"></script>   
+	<script src="MCCommunication/CommandsMgr.js"></script>   
+  </head>
+  
+  <body>
+    <div id="jsoneditor"></div>
+    <button type="button" id="addStepBtn" >Add Step</button>
+    <button id="deviceSelectionBtn">Select Application</button>
+	<button type="button" id="startReplayBtn" >Start Replay</button>
+    
+      <webview id="sidebarWV" partition="persist:localPackage" src="Sidebar/sidebar.html" 
+      style="width: 450px; height: 300px; border: 2px solid red" ></webview>
+      <!--webview id="wv2" partition="p2" style="width: 450px; height: 300px; border: 2px solid red" src="http://www.stackoverflow.com"></webview-->
+    
+    
+  </body>
+</html>
