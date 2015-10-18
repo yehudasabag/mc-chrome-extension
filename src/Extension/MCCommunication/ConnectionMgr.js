@@ -67,7 +67,7 @@
 					TC_NS.Event.dispatch("mobile/ws-communication-error", null, {state: WebSocketHandler._ws.readyState}, TC_NS.Event.DISPATCH_SYNC);
 				}
 			} catch (ex) {
-				console.error(ex.message, "----------> WebSocketHandler::send()");
+				console.log(ex.message, "----------> WebSocketHandler::send()");
 			}
 		},
 

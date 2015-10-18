@@ -26,6 +26,8 @@ var executeStepCallback = function(arguments){
 
 var recordCallback = function(arguments){
 	console.log("######record callback: " + arguments);
+	console.log(arguments);
+	stepTree.addStep(args);
 }
 
 window.perfromAppSelection = function(vncWV) {
@@ -43,5 +45,5 @@ window.startReplay = function(steps) {
 
 window.startRecord = function(tree) {
 	stepTree = tree;
-	window.CommandsMgr.startRecord(recordCallback);
+	window.CommandsMgr.performStartRecord(recordCallback);
 }
