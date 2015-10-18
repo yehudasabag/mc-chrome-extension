@@ -21,7 +21,7 @@
 		chrome.runtime.getBackgroundPage(function (backgroundPage) {
 			if (backgroundPage) {
 				bg = backgroundPage;
-				callback(bg);
+				callback && callback(bg);
 			}
 		});
 	}
@@ -35,7 +35,9 @@
 
 	function onDeviceSelection() {
 		console.log("#### on device selection");
-		bg.perfromDeviceSelection();
-		
+		getBG(function () {
+			bg.perfromDeviceSelection();	
+		});
 	}
+	
 })();
