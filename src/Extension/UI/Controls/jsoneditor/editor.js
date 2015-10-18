@@ -7,14 +7,15 @@ function Editor(domName){
 	}
 	
 	this.addStep = function(json){
-		var step = (json) ? json : jsonCmdTemplate;
-		steps.push(step)
-		editor.set(steps);
+		var step = json || jsonCmdTemplate;
+		this.steps.push(step)
+		editor.set(this.steps);
 	}
 	
 	var editor = new JSONEditor(domName, {
 		  "change": function () {
 	}});
+	return this;
 }
 
 var jsonCmdTemplate = {
