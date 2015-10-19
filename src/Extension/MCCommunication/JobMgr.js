@@ -15,7 +15,7 @@
 			function onJobCreateResponse(response) {
 				console.log("----------> executed CB of REST job/create");
 				if (response.error || !response.data.id) {
-					console.extended("----------> Error : " + response.message);
+					console.log("----------> Error : " + response.message);
 					callback({
 						error: true,
 						message: "Communicator.JobFailed" + response.message + " (" + CommonDetails.getServer() + ")",
@@ -35,7 +35,19 @@
 			var deviceId = DeviceMgr.getDeviceId();
 			var appId = AppMgr.getAppId();
 			if (appId && deviceId) {
-				DeviceMgr.validateDeviceIsConnected(deviceId, function (response) {
+			
+				var currJobName = "TruClientJob_" + generateUUID();
+				console.log("----------> createJob() - currJobName: " + currJobName);
+				var createJobMsg = {
+					"name": currJobName,
+					"application": AppMgr.getAppSection(),
+					"devices": [
+						{ "deviceID": deviceId }
+					]
+				};
+				console.log("----------> createJob() - createJob: " + JSON.stringify(createJobMsg));
+				ConnectionMgr.postRESTMsg(createJobMsg, "job/create", onJobCreateResponse);
+				/*DeviceMgr.validateDeviceIsConnected(deviceId, function (response) {
 					if (response.error) {
 						callback && callback(response);
 						return;
@@ -71,7 +83,7 @@
 							message: "Communicator.DeviceNotConnected" + " (" + CommonDetails.getServer() + ", Device: " + deviceId + ")"
 						});
 					}
-				});
+				});*/
 
 			}
 			else {
@@ -175,7 +187,7 @@
 			}
 
 			if (JobMgr.currJobId) {
-				console.log("----------> getJob() - already has currJobId = " + TC_NS.TCNMJobMgr.currJobId);
+				console.log("----------> getJob() - already has currJobId");
 				innerCallback({ jobId: JobMgr.currJobId });
 			} else {
 				JobMgr.createJob(function (response) {

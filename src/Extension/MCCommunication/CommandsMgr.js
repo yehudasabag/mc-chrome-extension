@@ -13,7 +13,35 @@
 		},
 		performStartRecord: function (callback) {
 			console.log("----------> performStartRecord()");
-			this.startRecord(callback);
+			CommandsMgr.updateRunTimeInfo();
+			function onHandshakeComplete2(handshakeState) {
+				console.log("----------> executed CB of serverHandshake");
+				// Assumes that RTS contains deviceId and appId
+				function onJobReady(response) {
+					console.log("----------> executed CB of getJob");
+					if (response.error) {
+						console.error("----------> Error : " + response.message);
+						callback(response);
+					}
+					else {
+						if (!JobMgr.isJobReady()) {
+							callback && callback({error: true, message: "Reconnect to the server" });
+							return;
+						}
+						ConnectionMgr.sendToWS("startRecord", "mobile/record-started", true, null, true, callback);
+					}
+				}
+
+				if (handshakeState.error) {
+					console.error("----------> Error : " + handshakeState.message);
+					callback && callback(handshakeState);
+					return;
+				}
+
+				JobMgr.getJob(onJobReady);
+			}
+
+			ConnectionMgr.serverHandshake(false, onHandshakeComplete2);
 		},
 		stopRecord: function (callback) {
 			console.log("----------> stopRecord()");
@@ -87,9 +115,11 @@
 		executeStep: function (actionSection, testObj, targetTestObject, command, callback) {
 			var contentExtension = {};
 			if (actionSection) {
+				console.log(actionSection);
 				contentExtension.action = actionSection;
 			}
 			if (testObj && testObj.className != "Device") {
+				console.log(testObj);
 				contentExtension.application = {uuid: AppMgr.currApp.identifier};
 			}
 			if (testObj) {
@@ -99,6 +129,7 @@
 				contentExtension.targetTestObject = targetTestObject;
 			}
 
+			console.log("content: " + contentExtension);
 			ConnectionMgr.sendToWS(command || "executeStep", "mobile/step-executed", false, contentExtension, false, callback);
 		},
 		findElementInPoint: function (point, callback) {

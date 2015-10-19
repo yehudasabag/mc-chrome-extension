@@ -7,8 +7,27 @@ chrome.app.runtime.onLaunched.addListener(function () {
   });
 });
 
-var callback = function (param) {
-  console.log("callback: " + param);
+var stepsToExecute = {};
+var stepTree = null;
+
+var startReplayCallback = function(param){
+	console.log("Start Replay Complete");
+	
+	for(var stepName in stepsToExecute){
+		var step = stepsToExecute[stepName];
+		console.log("executing step: " + step);
+		window.CommandsMgr.executeStep(step.action, step.testObject, null, null, executeStepCallback) 
+	}
+};
+
+var executeStepCallback = function(arguments){
+	console.log("######Executestep callback: " + arguments);
+}
+
+var recordCallback = function(arguments){
+	console.log("######record callback: " + arguments);
+	console.log(arguments);
+	stepTree.addStep(args);
 }
 
 var jobId = null;
@@ -39,20 +58,19 @@ window.perfromAppSelection = function (vncWV) {
 
   // });
   //vncWV.src = CommonDetails.getSetting("serverUrl");
-  
-  
+};
 
+window.startReplay = function(steps) {
+	stepsToExecute = steps;
 
-  ConnectionMgr.serverHandshake(false, onHandshakeComplete);
-
-}
+};
 
 window.performDeviceSelection = function (vncWV) {
   console.log("### performDeviceSelection, jobId = " + jobId);
   vncWV.src = "http://16.54.196.10:8080/integration/?locale=en#/devices?jobId=" + jobId;
 }
 
-window.startReplay = function () {
-  console.log("### performStartReplay ###");
-  window.CommandsMgr.performStartReplay(callback);
+window.startRecord = function(tree) {
+	stepTree = tree;
+	window.CommandsMgr.performStartRecord(recordCallback);
 }

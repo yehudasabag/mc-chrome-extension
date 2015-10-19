@@ -14,6 +14,9 @@
 		var startReplayBtn = document.getElementById("startReplayBtn");
 		startReplayBtn.addEventListener('click', onStartReplay);
 		
+		var startRecordBtn = document.getElementById("startRecordBtn");
+		startRecordBtn.addEventListener('click', onStartRecord);
+		
 		var container = document.getElementById("jsoneditor");
 		stepsTree = new Editor(container);
 		
@@ -48,24 +51,28 @@
 	
 	function onAddStep() {
 		stepsTree.addStep();
-	}
+	};
 	
 	function onStartReplay() {
 		console.log("#### on start replay");
-		chrome.runtime.getBackgroundPage(function (backgroundPage) {
-			if (backgroundPage) {
-				bg = backgroundPage;
-				bg.startReplay();
-			}
+		getBG(function () {
+			bg.startReplay(stepsTree.getSteps());
 		});
-	}
+	};
 
 	function onAppSelection() {
 		console.log("#### on app selection");
 		getBG(function () {
 			bg.perfromAppSelection(document.getElementById("vncWV"));	
 		});
-	}
+	};
+	
+	function onStartRecord() {
+		console.log("#### on start record");
+		getBG(function () {
+			bg.startRecord(stepsTree);
+		});
+	};
 	
 	function onDeviceSelection() {
 		console.log("#### on device selection");
