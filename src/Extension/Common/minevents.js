@@ -33,6 +33,6 @@ YEvent.on = function (type, func, ctx) {
 YEvent.off = function (type, func, event) {
 	event.off(type, func);
 }
-YEvent.emit = function (type, event) {
+YEvent.dispatch = function (type, event) {
 	event.dispatch(type);
 }

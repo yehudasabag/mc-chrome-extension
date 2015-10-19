@@ -4,6 +4,14 @@
   "version": "0.1",
   "manifest_version": 2,
   "permissions": ["webview", "http://*/"],
+  // "webview": {
+  //   "partitions": [
+  //     {
+  //       "name": "loginFiles",
+  //       "accessible_resources": ["MCCommunication/McLoginDummy.html", "MCCommunication/McLoginContentScript.js"]
+  //     }
+  //   ]
+  // },
   "app": {
     "background": {
       "scripts": [

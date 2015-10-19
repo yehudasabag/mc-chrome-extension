@@ -155,7 +155,7 @@
 					console.log("REST request from " + server + " error: " + restType + "; " + restAPI + "; " + msg);
 					callback && callback({
 						error: true,
-						message: window.getL10NStr("Server.ConnectionFailed") + " (" + server + ")"
+						message: "Server.ConnectionFailed" + " (" + server + ")"
 					});
 				};
 
@@ -389,7 +389,6 @@
 		serverHandshake: function (force, callback) {
 			console.log("----------> serverHandshake()");
 			function innerCallback(response) {
-				YEvent.dispatch("mobile/connect-server-done", null, {error: response.error});
 				callback && callback(response);
 			}
 

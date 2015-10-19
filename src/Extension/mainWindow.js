@@ -5,6 +5,9 @@
 		var appSelection = document.getElementById("appSelectionBtn");
 		appSelection.addEventListener('click', onAppSelection);
 		
+		var deviceSelection = document.getElementById("deviceSelectionBtn");
+		deviceSelection.addEventListener('click', onDeviceSelection);
+		
 		var addStepBtn = document.getElementById("addStepBtn");
 		addStepBtn.addEventListener('click', onAddStep);
 		
@@ -16,6 +19,17 @@
 		
 		getBG();
 	}
+	
+	// window.onunload = function () {
+	// 	var appSelection = document.getElementById("appSelectionBtn");
+	// 	appSelection.removeEventListener('click', onAppSelection);
+		
+	// 	var addStepBtn = document.getElementById("addStepBtn");
+	// 	addStepBtn.removeEventListener('click', onAddStep);
+		
+	// 	var startReplayBtn = document.getElementById("startReplayBtn");
+	// 	startReplayBtn.removeEventListener('click', onStartReplay);
+	// }
 	
 	function getBG(callback) {
 		if (bg) {
@@ -47,9 +61,16 @@
 	}
 
 	function onAppSelection() {
-		console.log("#### on device selection");
+		console.log("#### on app selection");
 		getBG(function () {
 			bg.perfromAppSelection(document.getElementById("vncWV"));	
+		});
+	}
+	
+	function onDeviceSelection() {
+		console.log("#### on device selection");
+		getBG(function () {
+			bg.performDeviceSelection(document.getElementById("vncWV"));	
 		});
 	}
 	

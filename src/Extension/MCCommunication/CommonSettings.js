@@ -12,6 +12,7 @@
 		"restartApp": true,
 		"installAppBeforeExecution": true,
 		"deleteAppAfterExecution": false,
+		"locale": "en",
 		"maxStepTimeOut": 20
 	};
 
