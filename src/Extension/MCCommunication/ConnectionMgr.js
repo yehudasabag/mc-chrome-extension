@@ -67,7 +67,7 @@
 					TC_NS.Event.dispatch("mobile/ws-communication-error", null, {state: WebSocketHandler._ws.readyState}, TC_NS.Event.DISPATCH_SYNC);
 				}
 			} catch (ex) {
-				console.error(ex.message, "----------> WebSocketHandler::send()");
+				console.log(ex.message, "----------> WebSocketHandler::send()");
 			}
 		},
 
@@ -265,7 +265,7 @@
 					case "stepRecorded":
 						content.data.job = {id: content.job.id};
 						content.data.device = {id: content.device.id};
-						Event.dispatch("mobile/stepRecieved", null, {stepContent: content.data});
+						YEvent.dispatch("mobile/stepRecieved", null, {stepContent: content.data});
 						break;
 					case "startReplay":
 						YEvent.dispatch("mobile/replay-started", responseArgs);
@@ -317,7 +317,7 @@
 				}
 			}
 			catch (ex) {
-				console.error("Exception in incomingWsMessageHandler: " + ex.message);
+				console.log("Exception in incomingWsMessageHandler: " + ex.message);
 			}
 		},
 		getCmdMsg: function (cmd, includeHeader, testObj, targetTestObject) {
@@ -350,10 +350,10 @@
 				//var SNAPSHOT_ALWAYS = '2';
 				cmdObj.data.data.content.header = {
 					"configuration": {
-						"restartApp": McCommonDetails.getSetting("restartApp"),
-						"installAppBeforeExecution": McCommonDetails.getSetting("installAppBeforeExecution"),
-						"deleteAppAfterExecution": McCommonDetails.getSetting("deleteAppAfterExecution"),
-						"maxStepTimeOut": McCommonDetails.getSetting("maxStepTimeOut"),
+						"restartApp": CommonDetails.getSetting("restartApp"),
+						"installAppBeforeExecution": CommonDetails.getSetting("installAppBeforeExecution"),
+						"deleteAppAfterExecution": CommonDetails.getSetting("deleteAppAfterExecution"),
+						"maxStepTimeOut": CommonDetails.getSetting("maxStepTimeOut"),
 					},
 					"collect": {
 						"cpu": false,
@@ -389,7 +389,7 @@
 		serverHandshake: function (force, callback) {
 			console.log("----------> serverHandshake()");
 			function innerCallback(response) {
-				YEvent.dispatch("mobile/connect-server-done", null, {error: response.error});
+				//YEvent.dispatch("mobile/connect-server-done", null, {error: response.error});
 				callback && callback(response);
 			}
 
@@ -597,7 +597,8 @@
 				config.deleteAppAfterExecution = false;
 			}
 			if (contentExtension) {
-				Object.extend(cmdMsgObj.data.data.content, contentExtension);
+				cmdMsgObj.data.data.content.action = contentExtension.action;
+				cmdMsgObj.data.data.content.testObject = contentExtension.testObject;				
 			}
 			var cmdMsg = JSON.stringify(cmdMsgObj);
 			var handler = YEvent.on(waitResponseType, function (response) {
@@ -606,13 +607,12 @@
 			// 	stepTimeoutEvent.off("step/timeout", onTimeout);
 
 			 	if (callback) {
-			// 		errorHandler.off("mobile/server-failed");
-
+			// 		errorHandler.off("mobile/server-failed")				
 			 		if (response.status == "failure") {
 			 			response["error"] = response.errorCode;
 			 			response["message"] = response.errorText;
 			 		}
-					 handler.off(waitResponseType);
+					handler.off(waitResponseType);
 			 		callback(response);
 			 	}
 			});

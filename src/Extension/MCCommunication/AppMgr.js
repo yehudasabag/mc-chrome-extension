@@ -18,26 +18,26 @@
 			//, "type": TC_NS.TCNMAppMgr.getAppOsType()
 			return {"identifier": this.getAppId()};
 		},
-		// validateAppIsInstalled: function (appID, callback) {
-		// 	TC_NS.TCNMAppMgr.getInstalledApps(function (response) {
-		// 		if (response.error) {
-		// 			callback && callback(response);
-		// 			return;
-		// 		}
-		// 		TC_NS.Log.extended("----------> Look for appID = " + appID);
-		// 		if (response && response.length > 0) {
-		// 			for (var i = 0; i < response.length; i++) {
-		// 				if (response[i].id == appID || response[i].identifier == appID) {
-		// 					TC_NS.Log.extended("----------> Found appID = " + response[i].id);
-		// 					callback && callback({error: false, installed: true});
-		// 					return;
-		// 				}
-		// 			}
-		// 			TC_NS.Log.extended("----------> appID = " + appID + " is not installed on to the server");
-		// 			callback && callback({error: false, installed: false});
-		// 		}
-		// 	});
-		// },
+		 /*validateAppIsInstalled: function (appID, callback) {
+		 	TC_NS.TCNMAppMgr.getInstalledApps(function (response) {
+		 		if (response.error) {
+		 			callback && callback(response);
+		 			return;
+		 		}
+		 		TC_NS.Log.extended("----------> Look for appID = " + appID);
+		 		if (response && response.length > 0) {
+		 			for (var i = 0; i < response.length; i++) {
+		 				if (response[i].id == appID || response[i].identifier == appID) {
+		 					TC_NS.Log.extended("----------> Found appID = " + response[i].id);
+		 					callback && callback({error: false, installed: true});
+		 					return;
+		 				}
+		 			}
+		 			TC_NS.Log.extended("----------> appID = " + appID + " is not installed on to the server");
+		 			callback && callback({error: false, installed: false});
+		 		}
+		 	});
+		 },*/
 		// Returns array of installed Apps. Each app object is similiar to:
 		//{"name":"HP-Demo","id":"681522bc-bfd2-4db5-9c4a-6cd9ae5114cb","type":"ANDROID","fileName":"HP-Demo.apk",
 		// "version":"1","identifier":"com.example.hp_demo","icon":"base64blabla...",
