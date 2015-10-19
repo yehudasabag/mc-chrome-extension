@@ -17,7 +17,19 @@
 		var container = document.getElementById("jsoneditor");
 		stepsTree = new Editor(container);
 		
+		var showVNCBtn = document.getElementById("showVNC");
+		showVNCBtn.addEventListener('click', showVNC);
+		
 		getBG();
+	}
+	
+	function showVNC(){
+		console.log("asdsadfadfadsdsfasdkjhdsa");
+		document.getElementById("showVNC").style.display = "none";
+		var vncWV = document.getElementById("vncWV");
+		vncWV.style.display = "inline";
+		vncWV.src = "http://16.54.196.10:8080/integration/?locale=en#/remote?jobId=39c810b9-8504-4acc-a4c4-dfae7f74cc16&deviceId=00000011-4B36-8AA5-0000-000000000000";
+		
 	}
 	
 	function getBG(callback) {
