@@ -47,6 +47,7 @@ window.perfromAppSelection = function (vncWV) {
       vncWV.src = "http://16.54.196.10:8080/integration/?locale=en#/applications?jobId=" + job.jobId;
     });
   }
+  ConnectionMgr.serverHandshake(false, onHandshakeComplete);
   // vncWV.addEventListener("loadcommit", function (e) {
   //   vncWV.executeScript({ file: "MCCommunication/McLoginContentScript.js", runAt: "document_start" },
   //     function () {
@@ -62,6 +63,7 @@ window.perfromAppSelection = function (vncWV) {
 
 window.startReplay = function(steps) {
 	stepsToExecute = steps;
+  window.CommandsMgr.performStartReplay(startReplayCallback);
 
 };
 
